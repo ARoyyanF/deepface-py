@@ -1,0 +1,9 @@
+using claude-4
+in this ipynb, create a one to many face recognition authentication, using ghostfacenet implementation from deepface library, use facenet as fallback if ghostfacenet fails. use json as the database. make the main model & fallback model alongside its face alignment algorithms easily changable.
+pipeline:
+1. scan for user folders, person1, person2, etc. one person may have multiple images.
+2. align the images
+3. augment the aligned images by variating lighting angles.
+4. create the augmented image embeddings alongside the original. store the vectors to the json file
+5. read from a folder containing random faces, compare the embeddings, list top 5 best matches alongside the distance
+6. summarize the results to another json file, make sure to log everything needed for further evaluation.
