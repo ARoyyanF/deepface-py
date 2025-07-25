@@ -1,0 +1,55 @@
+# Configuration class for easy model and algorithm changes
+class FaceRecognitionConfig:
+    def __init__(self):
+        # Model configurations
+        self.primary_model = "Facenet"
+        self.fallback_model = "GhostFaceNet"
+        
+        # Face detection backends (easily changeable)
+        self.primary_detector = "mtcnn"  # Options: opencv, ssd, dlib, mtcnn, retinaface, mediapipe
+        self.fallback_detector = "retinaface"
+        
+        # Face alignment algorithms
+        self.alignment_algorithm = True  # Enable face alignment
+        
+        # Distance metrics
+        self.distance_metric = "cosine"  # Options: cosine, euclidean, euclidean_l2
+        
+        # Enhanced augmentation parameters
+        self.lighting_variations = [0.7, 0.8, 0.9, 1.1, 1.2, 1.3]  # Brightness multipliers
+        self.sphere_positions = ["left", "right", "top", "bottom"]  # White sphere lighting positions
+        self.sphere_intensity = 0.3  # Intensity of the white sphere effect
+        self.enable_augmentation = True
+        
+        # Thresholds
+        self.similarity_threshold = 0.68  # Cosine distance threshold
+        self.top_k_matches = 5
+        
+        # Enhanced fallback mechanism parameters
+        self.ambiguity_distance_threshold = 0.1  # If next best match is within this distance, use fallback
+        self.max_recognized_threshold = 1  # If more than this many matches are recognized, use fallback
+        self.enable_enhanced_fallback = False # Enable fallback mechanism
+        
+        # Paths
+        self.database_path = "face_database"
+        self.query_path = "sample_images"
+        self.json_db_file = "face_embeddings_db.json"
+        self.results_file = "recognition_results.json"
+        
+        # Logging
+        self.log_level = logging.INFO
+
+# Initialize configuration
+config = FaceRecognitionConfig()
+
+print("Configuration initialized:")
+print(f"Primary Model: {config.primary_model}")
+print(f"Fallback Model: {config.fallback_model}")
+print(f"Primary Detector: {config.primary_detector}")
+print(f"Distance Metric: {config.distance_metric}")
+print(f"Augmentation Enabled: {config.enable_augmentation}")
+print(f"Sphere Positions: {config.sphere_positions}")
+print(f"Enhanced Fallback: {config.enable_enhanced_fallback}")
+print(f"Top K Matches: {config.top_k_matches}")
+print(f"Database Path: {config.database_path}")
+print(f"Query Path: {config.query_path}")

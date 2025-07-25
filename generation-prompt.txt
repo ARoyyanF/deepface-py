@@ -7,3 +7,17 @@ pipeline:
 4. create the augmented image embeddings alongside the original. store the vectors to the json file
 5. read from a folder containing random faces, compare the embeddings, list top 5 best matches alongside the distance
 6. summarize the results to another json file, make sure to log everything needed for further evaluation.
+
+revise this file as follows:
+
+augmentation: in addition to brightness variation, add a white sphere location variation (left, right, top, bottom) to simulate various lighting angles
+generate fallback embedding
+revise fallback mechanism. automatically use fallback if the main model returns more than 1 image that is labeled is_recognized, or if the distance with the next top match is less than 0.1, this aims to increase robustness in terms of precision
+
+todo:
+
+make number of fallback models scalable.
+account for different similarity threshold for each models
+add the option to resize image for image processing, add config for configurable pixels & dimension, leave None to skip resizing
+cell 7 result calculation is broken
+fix cell 12

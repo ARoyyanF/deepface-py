@@ -1,0 +1,1381 @@
+{
+  "evaluation_metadata": {
+    "evaluation_timestamp": "2025-07-25T10:04:45.932190",
+    "configuration": {
+      "primary_model": "GhostFaceNet",
+      "fallback_model": "Facenet",
+      "primary_detector": "retinaface",
+      "distance_metric": "cosine",
+      "similarity_threshold": 0.68,
+      "top_k_matches": 5,
+      "augmentation_enabled": true,
+      "sphere_lighting_enabled": true,
+      "enhanced_fallback_enabled": false,
+      "ambiguity_distance_threshold": 0.1,
+      "max_recognized_threshold": 1
+    }
+  },
+  "processing_statistics": {
+    "total_query_images": 18,
+    "successfully_processed": 18,
+    "processing_failures": 0,
+    "processing_success_rate": 1.0
+  },
+  "recognition_statistics": {
+    "faces_recognized": 6,
+    "faces_unrecognized": 12,
+    "recognition_rate": 0.3333333333333333,
+    "overall_success_rate": 0.3333333333333333
+  },
+  "enhanced_model_performance": {
+    "model_usage_distribution": {
+      "GhostFaceNet": 18
+    },
+    "fallback_usage_count": 0,
+    "fallback_usage_rate": 0.0,
+    "enhanced_fallback_count": 0,
+    "enhanced_fallback_rate": 0.0,
+    "fallback_reasons": {},
+    "dual_embeddings_available_count": 18,
+    "dual_embeddings_rate": 1.0
+  },
+  "ambiguity_analysis": {
+    "ambiguous_results_count": 8,
+    "ambiguity_rate": 0.4444444444444444,
+    "ambiguity_reasons": {
+      "Close distances: 0.0655 < 0.1": 1,
+      "Close distances: 0.0110 < 0.1": 1,
+      "Close distances: 0.0438 < 0.1": 1,
+      "Close distances: 0.0702 < 0.1": 1,
+      "Close distances: 0.0058 < 0.1": 1,
+      "Close distances: 0.0135 < 0.1": 1,
+      "Close distances: 0.0924 < 0.1": 1,
+      "Close distances: 0.0624 < 0.1": 1
+    },
+    "enhanced_fallback_effectiveness": 0.0
+  },
+  "confidence_analysis": {
+    "mean_confidence": 0.4897893227988898,
+    "median_confidence": 0.49209023131695845,
+    "std_confidence": 0.08443987273938772,
+    "min_confidence": 0.33256391202123836,
+    "max_confidence": 0.617524052802987,
+    "confidence_distribution": {
+      "very_high (>0.9)": 0,
+      "high (0.8-0.9)": 0,
+      "medium (0.7-0.8)": 0,
+      "low (0.6-0.7)": 1,
+      "very_low (<0.6)": 5
+    }
+  },
+  "distance_analysis": {
+    "mean_distance": 0.5102106772011102,
+    "median_distance": 0.5079097686830416,
+    "std_distance": 0.08443987273938772,
+    "min_distance": 0.38247594719701306,
+    "max_distance": 0.6674360879787616
+  },
+  "per_person_performance": {
+    "person1": {
+      "recognized_count": 5,
+      "total_queries": 0,
+      "avg_confidence": 0.4642423767980704,
+      "avg_distance": 0.5357576232019297,
+      "confidences": [
+        0.4994204160600425,
+        0.33256391202123836,
+        0.527892888131345,
+        0.4847600465738744,
+        0.4765746212038515
+      ],
+      "distances": [
+        0.5005795839399575,
+        0.6674360879787616,
+        0.47210711186865495,
+        0.5152399534261256,
+        0.5234253787961485
+      ]
+    },
+    "person2": {
+      "recognized_count": 1,
+      "total_queries": 0,
+      "avg_confidence": 0.617524052802987,
+      "avg_distance": 0.38247594719701306,
+      "confidences": [
+        0.617524052802987
+      ],
+      "distances": [
+        0.38247594719701306
+      ]
+    }
+  },
+  "enhanced_database_statistics": {
+    "total_persons_in_db": 3,
+    "total_embeddings_in_db": 406,
+    "primary_model_embeddings": 203,
+    "fallback_model_embeddings": 203,
+    "avg_embeddings_per_person": 135.33333333333334,
+    "sphere_lighting_augmentations": 392,
+    "brightness_augmentations": 336
+  },
+  "detailed_results": [
+    {
+      "success": true,
+      "query_image": "sample_images\\20250630_175850.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_104",
+          "distance": 0.7790684635296308,
+          "similarity_score": 0.22093153647036923,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_154",
+          "distance": 0.844589690329812,
+          "similarity_score": 0.15541030967018798,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_1.1",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_32",
+          "distance": 0.8690590149677461,
+          "similarity_score": 0.13094098503225393,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_top_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person2",
+        "embedding_id": "person2_104",
+        "distance": 0.7790684635296308,
+        "similarity_score": 0.22093153647036923,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person2\\person2_2.jpg",
+        "augmentation_type": "sphere_bottom_brightness_0.7",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.22093153647036923,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0655 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:02:46.964930"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250701_182222.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 1,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_26",
+          "distance": 0.5005795839399575,
+          "similarity_score": 0.4994204160600425,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_1.jpg",
+          "augmentation_type": "sphere_right_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_98",
+          "distance": 0.8232003020825507,
+          "similarity_score": 0.17679969791744932,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_top_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_92",
+          "distance": 0.9038426445475062,
+          "similarity_score": 0.09615735545249382,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_2.jpg",
+          "augmentation_type": "sphere_top_brightness_0.8",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_26",
+        "distance": 0.5005795839399575,
+        "similarity_score": 0.4994204160600425,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_1.jpg",
+        "augmentation_type": "sphere_right_brightness_1.2",
+        "fallback_used": false
+      },
+      "is_recognized": true,
+      "confidence": 0.4994204160600425,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:02:54.238714"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250701_182417.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 1,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_154",
+          "distance": 0.6674360879787616,
+          "similarity_score": 0.33256391202123836,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_1.1",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_32",
+          "distance": 0.8797937670453018,
+          "similarity_score": 0.12020623295469823,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_top_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_80",
+          "distance": 0.8892039158036043,
+          "similarity_score": 0.11079608419639575,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_2.jpg",
+          "augmentation_type": "sphere_right_brightness_0.9",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_154",
+        "distance": 0.6674360879787616,
+        "similarity_score": 0.33256391202123836,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_top_brightness_1.1",
+        "fallback_used": false
+      },
+      "is_recognized": true,
+      "confidence": 0.33256391202123836,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:03:01.507774"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250705_023914.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_138",
+          "distance": 0.7433459164251794,
+          "similarity_score": 0.25665408357482056,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_right_brightness_0.9",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_14",
+          "distance": 0.9820071090240414,
+          "similarity_score": 0.017992890975958575,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_left_brightness_1.3",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_114",
+          "distance": 1.0647421679601143,
+          "similarity_score": -0.06474216796011434,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_bottom_brightness_1.3",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_138",
+        "distance": 0.7433459164251794,
+        "similarity_score": 0.25665408357482056,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_right_brightness_0.9",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.25665408357482056,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:03:15.574863"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250707_132210.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_144",
+          "distance": 0.7507969265458355,
+          "similarity_score": 0.24920307345416448,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_right_brightness_1.3",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_48",
+          "distance": 0.7617786830812477,
+          "similarity_score": 0.23822131691875226,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.8",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_18",
+          "distance": 0.9456792623170021,
+          "similarity_score": 0.054320737682997944,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_right_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_144",
+        "distance": 0.7507969265458355,
+        "similarity_score": 0.24920307345416448,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_right_brightness_1.3",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.24920307345416448,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0110 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:03:39.418546"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250707_132240.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_54",
+          "distance": 0.6949893717298481,
+          "similarity_score": 0.3050106282701519,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_48",
+          "distance": 0.8100991840033264,
+          "similarity_score": 0.18990081599667363,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.8",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_46",
+          "distance": 0.8939119191054712,
+          "similarity_score": 0.10608808089452881,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_54",
+        "distance": 0.6949893717298481,
+        "similarity_score": 0.3050106282701519,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_1.jpg",
+        "augmentation_type": "sphere_bottom_brightness_1.2",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.3050106282701519,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:04.861418"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250708_162645.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 1,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_22",
+          "distance": 0.47210711186865495,
+          "similarity_score": 0.527892888131345,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_1.jpg",
+          "augmentation_type": "sphere_right_brightness_0.9",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_100",
+          "distance": 0.8399552425101572,
+          "similarity_score": 0.16004475748984281,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_top_brightness_1.3",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_46",
+          "distance": 0.9104845986820653,
+          "similarity_score": 0.08951540131793467,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_22",
+        "distance": 0.47210711186865495,
+        "similarity_score": 0.527892888131345,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_1.jpg",
+        "augmentation_type": "sphere_right_brightness_0.9",
+        "fallback_used": false
+      },
+      "is_recognized": true,
+      "confidence": 0.527892888131345,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:09.367501"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250708_162657.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 1,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_26",
+          "distance": 0.5152399534261256,
+          "similarity_score": 0.4847600465738744,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_1.jpg",
+          "augmentation_type": "sphere_right_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_100",
+          "distance": 0.8146221568170994,
+          "similarity_score": 0.18537784318290063,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_top_brightness_1.3",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_54",
+          "distance": 0.9535848987690632,
+          "similarity_score": 0.04641510123093684,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_1.2",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_26",
+        "distance": 0.5152399534261256,
+        "similarity_score": 0.4847600465738744,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_1.jpg",
+        "augmentation_type": "sphere_right_brightness_1.2",
+        "fallback_used": false
+      },
+      "is_recognized": true,
+      "confidence": 0.4847600465738744,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:13.851288"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250708_163107.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_154",
+          "distance": 0.887881659863174,
+          "similarity_score": 0.11211834013682598,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_1.1",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_88",
+          "distance": 0.9316413783369918,
+          "similarity_score": 0.06835862166300821,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_top",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_104",
+          "distance": 1.0351602931796442,
+          "similarity_score": -0.0351602931796442,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_2.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_154",
+        "distance": 0.887881659863174,
+        "similarity_score": 0.11211834013682598,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_top_brightness_1.1",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.11211834013682598,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0438 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:18.545019"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250708_163112.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_154",
+          "distance": 0.8034689928861813,
+          "similarity_score": 0.19653100711381866,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_1.1",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_32",
+          "distance": 0.8736896463319593,
+          "similarity_score": 0.12631035366804066,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_top_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_42",
+          "distance": 0.8979729747932481,
+          "similarity_score": 0.10202702520675189,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_top_brightness_1.3",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_154",
+        "distance": 0.8034689928861813,
+        "similarity_score": 0.19653100711381866,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_top_brightness_1.1",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.19653100711381866,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0702 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:22.968102"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250710_094442.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_154",
+          "distance": 0.8089476439143223,
+          "similarity_score": 0.19105235608567772,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_1.1",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_70",
+          "distance": 0.8147720601798896,
+          "similarity_score": 0.18522793982011043,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_left_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_42",
+          "distance": 0.9900476095753546,
+          "similarity_score": 0.009952390424645352,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_top_brightness_1.3",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_154",
+        "distance": 0.8089476439143223,
+        "similarity_score": 0.19105235608567772,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_top_brightness_1.1",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.19105235608567772,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0058 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:26.817816"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\20250713_195431.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 1,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_84",
+          "distance": 0.5234253787961485,
+          "similarity_score": 0.4765746212038515,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_2.jpg",
+          "augmentation_type": "sphere_right_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_32",
+          "distance": 0.7982037383115304,
+          "similarity_score": 0.20179626168846965,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_top_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_42",
+          "distance": 0.9923197125128994,
+          "similarity_score": 0.00768028748710059,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_top_brightness_1.3",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_84",
+        "distance": 0.5234253787961485,
+        "similarity_score": 0.4765746212038515,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_2.jpg",
+        "augmentation_type": "sphere_right_brightness_1.2",
+        "fallback_used": false
+      },
+      "is_recognized": true,
+      "confidence": 0.4765746212038515,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:36.975911"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\67fcd18d53b30.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_38",
+          "distance": 0.7107876438471099,
+          "similarity_score": 0.2892123561528901,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_top_brightness_1.1",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_156",
+          "distance": 0.9049262564766315,
+          "similarity_score": 0.0950737435233685,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_104",
+          "distance": 1.0279822314064282,
+          "similarity_score": -0.027982231406428193,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person3",
+        "embedding_id": "person3_38",
+        "distance": 0.7107876438471099,
+        "similarity_score": 0.2892123561528901,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person3\\person3_1.jpg",
+        "augmentation_type": "sphere_top_brightness_1.1",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.2892123561528901,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:38.467359"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\covAA-04.jpg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 1,
+      "top_matches": [
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_64",
+          "distance": 0.38247594719701306,
+          "similarity_score": 0.617524052802987,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_left_brightness_0.8",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_62",
+          "distance": 0.7077170707929514,
+          "similarity_score": 0.29228292920704857,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_2.jpg",
+          "augmentation_type": "sphere_left_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_76",
+          "distance": 0.86780286805866,
+          "similarity_score": 0.13219713194133997,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_2.jpg",
+          "augmentation_type": "sphere_right_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person2",
+        "embedding_id": "person2_64",
+        "distance": 0.38247594719701306,
+        "similarity_score": 0.617524052802987,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person2\\person2_2.jpg",
+        "augmentation_type": "sphere_left_brightness_0.8",
+        "fallback_used": false
+      },
+      "is_recognized": true,
+      "confidence": 0.617524052802987,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:39.617463"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\images (1).jpeg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_34",
+          "distance": 0.8048442569196692,
+          "similarity_score": 0.1951557430803308,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_top_brightness_0.8",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_128",
+          "distance": 0.8183051635283242,
+          "similarity_score": 0.18169483647167584,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_left_brightness_1.2",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_76",
+          "distance": 0.9974511183706916,
+          "similarity_score": 0.0025488816293084415,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_2.jpg",
+          "augmentation_type": "sphere_right_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person3",
+        "embedding_id": "person3_34",
+        "distance": 0.8048442569196692,
+        "similarity_score": 0.1951557430803308,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person3\\person3_1.jpg",
+        "augmentation_type": "sphere_top_brightness_0.8",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.1951557430803308,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0135 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:40.609265"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\images.jpeg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_56",
+          "distance": 0.7976758206759833,
+          "similarity_score": 0.2023241793240167,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_1.3",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_148",
+          "distance": 0.9130551584856623,
+          "similarity_score": 0.08694484151433768,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_56",
+          "distance": 0.9702742967777269,
+          "similarity_score": 0.02972570322227308,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_1.3",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person3",
+        "embedding_id": "person3_56",
+        "distance": 0.7976758206759833,
+        "similarity_score": 0.2023241793240167,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person3\\person3_1.jpg",
+        "augmentation_type": "sphere_bottom_brightness_1.3",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.2023241793240167,
+      "ambiguity_analysis": {
+        "is_ambiguous": false,
+        "reasons": [],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:41.450194"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\Jokowi.jpeg",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_148",
+          "distance": 0.7931241250623067,
+          "similarity_score": 0.20687587493769333,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_46",
+          "distance": 0.8855459875334991,
+          "similarity_score": 0.11445401246650089,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_48",
+          "distance": 0.9779843215313072,
+          "similarity_score": 0.02201567846869279,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_bottom_brightness_0.8",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_148",
+        "distance": 0.7931241250623067,
+        "similarity_score": 0.20687587493769333,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_top_brightness_0.7",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.20687587493769333,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0924 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:45.103724"
+    },
+    {
+      "success": true,
+      "query_image": "sample_images\\Screenshot 2025-07-24 153738.png",
+      "query_embedding_info": {
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "fallback_used": false,
+        "fallback_reason": "none",
+        "embedding_dimension": 512,
+        "dual_embeddings_available": true
+      },
+      "total_matches_found": 3,
+      "valid_matches_count": 0,
+      "top_matches": [
+        {
+          "person_id": "person1",
+          "embedding_id": "person1_154",
+          "distance": 0.7908045109409989,
+          "similarity_score": 0.2091954890590011,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person1\\person1_3.jpg",
+          "augmentation_type": "sphere_top_brightness_1.1",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person3",
+          "embedding_id": "person3_76",
+          "distance": 0.8532053849393908,
+          "similarity_score": 0.1467946150606092,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person3\\person3_2.jpg",
+          "augmentation_type": "sphere_right_brightness_0.7",
+          "fallback_used": false
+        },
+        {
+          "person_id": "person2",
+          "embedding_id": "person2_32",
+          "distance": 0.9328973840625369,
+          "similarity_score": 0.06710261593746314,
+          "model_used": "GhostFaceNet",
+          "detector_used": "retinaface",
+          "image_path": "face_database\\person2\\person2_1.jpg",
+          "augmentation_type": "sphere_top_brightness_0.7",
+          "fallback_used": false
+        }
+      ],
+      "best_match": {
+        "person_id": "person1",
+        "embedding_id": "person1_154",
+        "distance": 0.7908045109409989,
+        "similarity_score": 0.2091954890590011,
+        "model_used": "GhostFaceNet",
+        "detector_used": "retinaface",
+        "image_path": "face_database\\person1\\person1_3.jpg",
+        "augmentation_type": "sphere_top_brightness_1.1",
+        "fallback_used": false
+      },
+      "is_recognized": false,
+      "confidence": 0.2091954890590011,
+      "ambiguity_analysis": {
+        "is_ambiguous": true,
+        "reasons": [
+          "Close distances: 0.0624 < 0.1"
+        ],
+        "should_use_fallback": false
+      },
+      "enhanced_fallback_used": false,
+      "processing_timestamp": "2025-07-25T10:04:45.908588"
+    }
+  ]
+}

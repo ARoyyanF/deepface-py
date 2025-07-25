@@ -1,0 +1,100 @@
+# Configuration class for easy model and algorithm changes
+class FaceRecognitionConfig:
+    def __init__(self):
+        # Scalable model configurations - now supports multiple fallback models
+        self.primary_model = "Facenet"
+        self.fallback_models = ["GhostFaceNet"]  # List of fallback models in priority order
+        
+        # Face detection backends (easily changeable)
+        self.primary_detector = "mtcnn"  # Options: opencv, ssd, dlib, mtcnn, retinaface, mediapipe
+        self.fallback_detectors = ["retinaface"]  # Corresponding detectors for fallback models
+        
+        # Face alignment algorithms
+        self.alignment_algorithm = True  # Enable face alignment
+        
+        # Distance metrics
+        self.distance_metric = "cosine"  # Options: cosine, euclidean, euclidean_l2
+        
+        # Model-specific similarity thresholds
+        self.model_thresholds = {
+            "GhostFaceNet": 0.68, #original: 0.65
+            "Facenet": 0.65, #original: 40
+            "Facenet512": 0.30, # Facenet with 512 dimensions
+            "ArcFace": 0.68,
+            "VGG-Face": 0.68,
+            "OpenFace": 0.10,
+            "DeepFace": 0.23,
+            "DeepID": 0.015,
+            "Dlib": 0.07,
+            "SFace": 0.593
+        }
+        
+        # Image preprocessing configurations
+        self.resize_config = {
+            "enabled": True,           # Set to False to skip resizing
+            "target_size": (224, 224), # Target dimensions (width, height)
+            "maintain_aspect_ratio": True,  # Whether to maintain aspect ratio
+            "interpolation": cv2.INTER_LINEAR  # Interpolation method
+        }
+        
+        # Enhanced augmentation parameters
+        self.lighting_variations = [0.7, 0.8, 0.9, 1.1, 1.2, 1.3]  # Brightness multipliers
+        self.sphere_positions = ["left", "right", "top", "bottom"]  # White sphere lighting positions
+        self.sphere_intensity = 0.3  # Intensity of the white sphere effect
+        self.enable_augmentation = True
+        
+        # Legacy threshold for backward compatibility
+        self.similarity_threshold = 0.68  # Default threshold if model-specific not found
+        self.top_k_matches = 5
+        
+        # Enhanced fallback mechanism parameters
+        self.ambiguity_distance_threshold = 0.1  # If next best match is within this distance, use fallback
+        self.max_recognized_threshold = 1  # If more than this many matches are recognized, use fallback
+        self.enable_enhanced_fallback = False # Enable fallback mechanism
+        
+        # Paths
+        self.database_path = "face_database"
+        self.query_path = "sample_images"
+        self.json_db_file = "face_embeddings_db.json"
+        self.results_file = "recognition_results.json"
+        
+        # Logging
+        self.log_level = logging.INFO
+    
+    def get_threshold_for_model(self, model_name: str) -> float:
+        """Get the specific threshold for a model, or default if not found"""
+        return self.model_thresholds.get(model_name, self.similarity_threshold)
+    
+    def get_all_models(self) -> List[str]:
+        """Get all models (primary + fallbacks) in priority order"""
+        return [self.primary_model] + self.fallback_models
+    
+    def get_detector_for_model(self, model_name: str) -> str:
+        """Get the corresponding detector for a model"""
+        all_models = self.get_all_models()
+        all_detectors = [self.primary_detector] + self.fallback_detectors
+        
+        try:
+            index = all_models.index(model_name)
+            return all_detectors[index] if index < len(all_detectors) else self.primary_detector
+        except (ValueError, IndexError):
+            return self.primary_detector
+
+# Initialize configuration
+config = FaceRecognitionConfig()
+
+print("Enhanced Configuration initialized:")
+print(f"Primary Model: {config.primary_model}")
+print(f"Fallback Models: {config.fallback_models}")
+print(f"Primary Detector: {config.primary_detector}")
+print(f"Fallback Detectors: {config.fallback_detectors}")
+print(f"Distance Metric: {config.distance_metric}")
+print(f"Image Resize Enabled: {config.resize_config['enabled']}")
+print(f"Target Size: {config.resize_config['target_size']}")
+print(f"Augmentation Enabled: {config.enable_augmentation}")
+print(f"Sphere Positions: {config.sphere_positions}")
+print(f"Enhanced Fallback: {config.enable_enhanced_fallback}")
+print(f"Model-specific Thresholds: {list(config.model_thresholds.items())[:3]}...")
+print(f"Top K Matches: {config.top_k_matches}")
+print(f"Database Path: {config.database_path}")
+print(f"Query Path: {config.query_path}")
