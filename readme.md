@@ -57,4 +57,4 @@ These analyses are then visualized using various charts and plots for an easy-to
 
 [Facenet with no augmentation](https://github.com/ARoyyanF/deepface-py/blob/main/archive/2025-07-24/readme.md)
 
-[Facenet with brightness augmentation](https://github.com/ARoyyanF/deepface-py/blob/main/archive/2025-07-24/readme.md)
+[Facenet with brightness augmentation](https://github.com/ARoyyanF/deepface-py/blob/main/archive/2025-07-25/readme.md)
