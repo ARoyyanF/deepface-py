@@ -1,4 +1,4 @@
-# [Notebooks](https://github.com/ARoyyanF/deepface-py/blob/main/archive/2025-07-25/experimental_pipeline.ipynb) explanation:
+# Notebooks explanation:
 
 - [Facenet as primary model](https://github.com/ARoyyanF/deepface-py/blob/main/archive/2025-07-25/variations/augment-brightness-only/facenet/experimental_pipeline.ipynb)
 - [Ghostfacenet as primary model](https://github.com/ARoyyanF/deepface-py/blob/main/archive/2025-07-25/variations/augment-brightness-only/ghostfacenet/experimental_pipeline.ipynb)
