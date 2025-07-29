@@ -1,0 +1,426 @@
+# Step 7: Enhanced Visualization and Analysis
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import defaultdict
+import numpy as np
+
+class EnhancedVisualizer:
+    def __init__(self, config: FaceRecognitionConfig):
+        self.config = config
+        plt.style.use('default')
+        sns.set_palette("husl")
+    
+    def create_enhanced_visualizations(self, evaluation_summary: Dict[str, Any]):
+        """Create comprehensive visualizations for enhanced face recognition results"""
+        
+        # Set up the figure with multiple subplots
+        fig = plt.figure(figsize=(20, 16))
+        
+        # 1. Recognition Performance Overview
+        ax1 = plt.subplot(3, 4, 1)
+        recognition_stats = evaluation_summary['recognition_statistics']
+        processing_stats = evaluation_summary['processing_statistics']
+        
+        categories = ['Recognized', 'Unrecognized', 'Failed Processing']
+        values = [
+            recognition_stats['faces_recognized'],
+            recognition_stats['faces_unrecognized'],
+            processing_stats['processing_failures']
+        ]
+        colors = ['#2ecc71', '#f39c12', '#e74c3c']
+        
+        wedges, texts, autotexts = ax1.pie(values, labels=categories, colors=colors, autopct='%1.1f%%', startangle=90)
+        ax1.set_title('Recognition Performance Overview', fontsize=12, fontweight='bold')
+        
+        # 2. Enhanced Model Usage Distribution
+        ax2 = plt.subplot(3, 4, 2)
+        model_usage = evaluation_summary['enhanced_model_performance']['model_usage_distribution']
+        
+        if model_usage:
+            models = list(model_usage.keys())
+            usage_counts = list(model_usage.values())
+            
+            bars = ax2.bar(models, usage_counts, color=sns.color_palette("viridis", len(models)))
+            ax2.set_title('Model Usage Distribution', fontsize=12, fontweight='bold')
+            ax2.set_xlabel('Models')
+            ax2.set_ylabel('Usage Count')
+            plt.setp(ax2.get_xticklabels(), rotation=45, ha='right')
+            
+            # Add value labels on bars
+            for bar in bars:
+                height = bar.get_height()
+                ax2.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{int(height)}',
+                        ha='center', va='bottom')
+        else:
+            ax2.text(0.5, 0.5, 'No model usage data', ha='center', va='center', transform=ax2.transAxes)
+            ax2.set_title('Model Usage Distribution', fontsize=12, fontweight='bold')
+        
+        # 3. Fallback Mechanism Performance
+        ax3 = plt.subplot(3, 4, 3)
+        enhanced_perf = evaluation_summary['enhanced_model_performance']
+        
+        fallback_categories = ['Standard Fallback', 'Enhanced Fallback', 'No Fallback']
+        fallback_values = [
+            enhanced_perf['fallback_usage_count'],
+            enhanced_perf['enhanced_fallback_count'],
+            max(0, processing_stats['successfully_processed'] - enhanced_perf['fallback_usage_count'] - enhanced_perf['enhanced_fallback_count'])
+        ]
+        fallback_colors = ['#3498db', '#9b59b6', '#95a5a6']
+        
+        # Only show non-zero values
+        non_zero_indices = [i for i, v in enumerate(fallback_values) if v > 0]
+        if non_zero_indices:
+            filtered_categories = [fallback_categories[i] for i in non_zero_indices]
+            filtered_values = [fallback_values[i] for i in non_zero_indices]
+            filtered_colors = [fallback_colors[i] for i in non_zero_indices]
+            
+            wedges, texts, autotexts = ax3.pie(filtered_values, labels=filtered_categories, colors=filtered_colors, 
+                                              autopct='%1.1f%%', startangle=90)
+        else:
+            ax3.text(0.5, 0.5, 'No fallback data', ha='center', va='center', transform=ax3.transAxes)
+        ax3.set_title('Fallback Mechanism Usage', fontsize=12, fontweight='bold')
+        
+        # 4. Confidence Distribution
+        ax4 = plt.subplot(3, 4, 4)
+        confidence_dist = evaluation_summary['confidence_analysis']['confidence_distribution']
+        
+        # Filter out zero values
+        non_zero_conf = {k: v for k, v in confidence_dist.items() if v > 0}
+        
+        if non_zero_conf:
+            conf_labels = list(non_zero_conf.keys())
+            conf_values = list(non_zero_conf.values())
+            
+            bars = ax4.bar(range(len(conf_labels)), conf_values, color=sns.color_palette("plasma", len(conf_labels)))
+            ax4.set_title('Confidence Distribution', fontsize=12, fontweight='bold')
+            ax4.set_xlabel('Confidence Levels')
+            ax4.set_ylabel('Count')
+            ax4.set_xticks(range(len(conf_labels)))
+            ax4.set_xticklabels(conf_labels, rotation=45, ha='right')
+            
+            # Add value labels on bars
+            for i, bar in enumerate(bars):
+                height = bar.get_height()
+                ax4.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{int(height)}',
+                        ha='center', va='bottom')
+        else:
+            ax4.text(0.5, 0.5, 'No confidence data', ha='center', va='center', transform=ax4.transAxes)
+            ax4.set_title('Confidence Distribution', fontsize=12, fontweight='bold')
+        
+        # 5. Per-Person Performance
+        ax5 = plt.subplot(3, 4, 5)
+        per_person = evaluation_summary['per_person_performance']
+        
+        if per_person:
+            persons = list(per_person.keys())
+            recognition_counts = [per_person[p]['recognized_count'] for p in persons]
+            
+            bars = ax5.bar(persons, recognition_counts, color=sns.color_palette("Set2", len(persons)))
+            ax5.set_title('Per-Person Recognition Count', fontsize=12, fontweight='bold')
+            ax5.set_xlabel('Person ID')
+            ax5.set_ylabel('Recognition Count')
+            plt.setp(ax5.get_xticklabels(), rotation=45, ha='right')
+            
+            # Add value labels on bars
+            for bar in bars:
+                height = bar.get_height()
+                ax5.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{int(height)}',
+                        ha='center', va='bottom')
+        else:
+            ax5.text(0.5, 0.5, 'No per-person data', ha='center', va='center', transform=ax5.transAxes)
+            ax5.set_title('Per-Person Recognition Count', fontsize=12, fontweight='bold')
+        
+        # 6. Performance Metrics Summary
+        ax6 = plt.subplot(3, 4, 6)
+        ax6.axis('off')
+        
+        # Calculate per-model recognition count and ratio
+        model_usage_counts = evaluation_summary['enhanced_model_performance']['model_usage_distribution']
+        model_success_counts = {model: 0 for model in model_usage_counts.keys()}
+        detailed_results = evaluation_summary.get('detailed_results', [])
+
+        for result in detailed_results:
+            if result.get('success', False) and result.get('is_recognized', False):
+                embedding_info = result.get('query_embedding_info', {})
+                model_used = embedding_info.get('model_used')
+                if model_used in model_success_counts:
+                    model_success_counts[model_used] += 1
+
+        # Create detailed model performance text
+        model_perf_text = ""
+        for model, usage_count in model_usage_counts.items():
+            success_count = model_success_counts.get(model, 0)
+            success_ratio = (success_count / usage_count) if usage_count > 0 else 0
+            model_perf_text += f"{model}: {success_count}/{usage_count} recognized ({success_ratio:.1%})\\n"
+        
+        summary_text = f"""PERFORMANCE SUMMARY
+
+Recognition Rate: {recognition_stats['recognition_rate']:.1%}
+Processing Success: {processing_stats['processing_success_rate']:.1%}
+Overall Success: {recognition_stats['overall_success_rate']:.1%}
+
+MODEL PERFORMANCE (Recognized/Used):
+{model_perf_text.strip()}
+
+Mean Confidence: {evaluation_summary['confidence_analysis']['mean_confidence']:.3f}
+Mean Distance: {evaluation_summary['distance_analysis']['mean_distance']:.3f}
+
+Total Fallback Usage: {(enhanced_perf['fallback_usage_count'] + enhanced_perf['enhanced_fallback_count']) / processing_stats['successfully_processed']:.1%}
+Ambiguity Rate: {evaluation_summary['ambiguity_analysis']['ambiguity_rate']:.1%}
+
+Total Models: {enhanced_perf['total_models_configured']}
+"""
+        
+        ax6.text(0.05, 0.95, summary_text, transform=ax6.transAxes, fontsize=10,
+                 verticalalignment='top', fontfamily='monospace',
+                 bbox=dict(boxstyle="round,pad=0.3", facecolor="lightgray", alpha=0.7))
+        
+        # 7. Model-Specific Embeddings Distribution
+        ax7 = plt.subplot(3, 4, 7)
+        db_stats = evaluation_summary['enhanced_database_statistics']
+        model_embeddings = db_stats.get('model_specific_embeddings', {})
+        
+        if model_embeddings:
+            models = list(model_embeddings.keys())
+            embedding_counts = list(model_embeddings.values())
+            
+            bars = ax7.bar(models, embedding_counts, color=sns.color_palette("viridis", len(models)))
+            ax7.set_title('Model-Specific Embeddings', fontsize=12, fontweight='bold')
+            ax7.set_xlabel('Models')
+            ax7.set_ylabel('Embedding Count')
+            plt.setp(ax7.get_xticklabels(), rotation=45, ha='right')
+            
+            # Add value labels on bars
+            for bar in bars:
+                height = bar.get_height()
+                ax7.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{int(height)}',
+                        ha='center', va='bottom')
+        else:
+            ax7.text(0.5, 0.5, 'No embedding data', ha='center', va='center', transform=ax7.transAxes)
+            ax7.set_title('Model-Specific Embeddings', fontsize=12, fontweight='bold')
+        
+        # 8. Augmentation Analysis
+        ax8 = plt.subplot(3, 4, 8)
+        sphere_augs = db_stats.get('sphere_lighting_augmentations', 0)
+        brightness_augs = db_stats.get('brightness_augmentations', 0)
+        total_embeddings = db_stats.get('total_embeddings_in_db', 0)
+        original_images = max(0, total_embeddings - sphere_augs - brightness_augs)
+        
+        aug_categories = ['Original Images', 'Sphere Lighting', 'Brightness Variation']
+        aug_values = [original_images, sphere_augs, brightness_augs]
+        aug_colors = ['#34495e', '#f1c40f', '#e67e22']
+        
+        # Only show non-zero values
+        non_zero_aug = [(cat, val, col) for cat, val, col in zip(aug_categories, aug_values, aug_colors) if val > 0]
+        
+        if non_zero_aug:
+            filtered_aug_cats, filtered_aug_vals, filtered_aug_cols = zip(*non_zero_aug)
+            wedges, texts, autotexts = ax8.pie(filtered_aug_vals, labels=filtered_aug_cats, colors=filtered_aug_cols, 
+                                              autopct='%1.1f%%', startangle=90)
+        else:
+            ax8.text(0.5, 0.5, 'No augmentation data', ha='center', va='center', transform=ax8.transAxes)
+        ax8.set_title('Augmentation Distribution', fontsize=12, fontweight='bold')
+        
+        # 9. Confidence vs Distance Scatter Plot
+        ax9 = plt.subplot(3, 4, 9)
+        detailed_results = evaluation_summary.get('detailed_results', [])
+        
+        # Extract confidence and distance data
+        confidences = []
+        distances = []
+        for result in detailed_results:
+            if result.get('is_recognized', False) and result.get('best_match'):
+                confidences.append(result.get('confidence', 0))
+                distances.append(result['best_match'].get('distance', 0))
+        
+        if confidences and distances:
+            scatter = ax9.scatter(distances, confidences, alpha=0.6, c=range(len(confidences)), 
+                                cmap='viridis', s=50)
+            ax9.set_title('Confidence vs Distance', fontsize=12, fontweight='bold')
+            ax9.set_xlabel('Distance')
+            ax9.set_ylabel('Confidence')
+            ax9.grid(True, alpha=0.3)
+            
+            # Add trend line
+            if len(distances) > 1:
+                z = np.polyfit(distances, confidences, 1)
+                p = np.poly1d(z)
+                ax9.plot(distances, p(distances), "r--", alpha=0.8, linewidth=2)
+        else:
+            ax9.text(0.5, 0.5, 'No confidence/distance data', ha='center', va='center', transform=ax9.transAxes)
+            ax9.set_title('Confidence vs Distance', fontsize=12, fontweight='bold')
+        
+        # 10. Fallback Reasons Distribution
+        ax10 = plt.subplot(3, 4, 10)
+        fallback_reasons = enhanced_perf.get('fallback_reasons', {})
+        ambiguity_reasons = evaluation_summary['ambiguity_analysis'].get('ambiguity_reasons', {})
+        
+        all_reasons = {}
+        all_reasons.update({f"Fallback: {k}": v for k, v in fallback_reasons.items()})
+        all_reasons.update({f"Ambiguity: {k}": v for k, v in ambiguity_reasons.items()})
+        
+        if all_reasons:
+            reasons = list(all_reasons.keys())
+            reason_counts = list(all_reasons.values())
+            
+            bars = ax10.bar(range(len(reasons)), reason_counts, color=sns.color_palette("Set3", len(reasons)))
+            ax10.set_title('Fallback & Ambiguity Reasons', fontsize=12, fontweight='bold')
+            ax10.set_xlabel('Reason')
+            ax10.set_ylabel('Count')
+            ax10.set_xticks(range(len(reasons)))
+            ax10.set_xticklabels(reasons, rotation=45, ha='right')
+            
+            # Add value labels on bars
+            for bar in bars:
+                height = bar.get_height()
+                if height > 0:
+                    ax10.text(bar.get_x() + bar.get_width()/2., height,
+                              f'{int(height)}',
+                              ha='center', va='bottom')
+        else:
+            ax10.text(0.5, 0.5, 'No reason data', ha='center', va='center', transform=ax10.transAxes)
+            ax10.set_title('Fallback & Ambiguity Reasons', fontsize=12, fontweight='bold')
+        
+        # 11. Database Statistics
+        ax11 = plt.subplot(3, 4, 11)
+        ax11.axis('off')
+        
+        db_summary = f"""DATABASE STATISTICS
+
+Total Embeddings: {db_stats['total_embeddings_in_db']}
+Total Persons: {db_stats['total_persons_in_db']}
+Avg per Person: {db_stats['avg_embeddings_per_person']:.1f}
+
+Sphere Augmentations: {db_stats['sphere_lighting_augmentations']}
+Brightness Augmentations: {db_stats['brightness_augmentations']}
+
+Image Resize: {db_stats['image_resize_applied']}
+Target Size: {db_stats.get('target_image_size', 'N/A')}
+"""
+        
+        ax11.text(0.05, 0.95, db_summary, transform=ax11.transAxes, fontsize=10,
+                 verticalalignment='top', fontfamily='monospace',
+                 bbox=dict(boxstyle="round,pad=0.3", facecolor="lightgreen", alpha=0.7))
+        
+        # 12. Configuration Overview
+        ax12 = plt.subplot(3, 4, 12)
+        ax12.axis('off')
+        
+        config_info = evaluation_summary['evaluation_metadata']['configuration']
+        config_text = f"""CONFIGURATION
+
+Primary Model: {config_info['primary_model']}
+Fallback Models: {len(config_info['fallback_models'])}
+Distance Metric: {config_info['distance_metric']}
+Similarity Threshold: {config_info['similarity_threshold']}
+
+Augmentation: {config_info['augmentation_enabled']}
+Sphere Lighting: {config_info['sphere_lighting_enabled']}
+Enhanced Fallback: {config_info['enhanced_fallback_enabled']}
+Image Resize: {config_info['image_resize_enabled']}
+
+Ambiguity Threshold: {config_info['ambiguity_distance_threshold']}
+"""
+        
+        ax12.text(0.05, 0.95, config_text, transform=ax12.transAxes, fontsize=9,
+                 verticalalignment='top', fontfamily='monospace',
+                 bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue", alpha=0.7))
+        
+        plt.tight_layout()
+        plt.suptitle('Enhanced Face Recognition System - Comprehensive Analysis', 
+                    fontsize=16, fontweight='bold', y=0.98)
+        
+        # Save the plot
+        plot_filename = f"enhanced_analysis_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+        plt.savefig(plot_filename, dpi=300, bbox_inches='tight')
+        print(f"📊 Enhanced visualization saved as: {plot_filename}")
+        
+        plt.show()
+        
+        return plot_filename
+
+# Execute Step 7: Create enhanced visualizations
+print("\\n=== STEP 7: CREATING ENHANCED VISUALIZATIONS ===")
+
+if 'evaluation_summary' in globals():
+    try:
+        # Initialize enhanced visualizer
+        enhanced_visualizer = EnhancedVisualizer(config)
+        
+        # Create comprehensive visualizations
+        print("Generating enhanced visualizations...")
+        plot_file = enhanced_visualizer.create_enhanced_visualizations(evaluation_summary)
+        
+        print(f"\\n✅ Enhanced visualization complete!")
+        print(f"📈 Comprehensive analysis plot created and saved")
+        print(f"🎯 All 12 visualization panels generated successfully")
+        
+    except Exception as e:
+        print(f"❌ Error creating enhanced visualizations: {e}")
+        import traceback
+        traceback.print_exc()
+        
+        # Provide basic matplotlib visualization as fallback
+        try:
+            print("\\n🔄 Creating basic fallback visualization...")
+            fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+            
+            # Basic recognition stats
+            recognition_stats = evaluation_summary['recognition_statistics']
+            categories = ['Recognized', 'Unrecognized']
+            values = [recognition_stats['faces_recognized'], recognition_stats['faces_unrecognized']]
+            
+            if sum(values) > 0:
+                axes[0,0].pie(values, labels=categories, autopct='%1.1f%%')
+                axes[0,0].set_title('Recognition Results')
+            else:
+                axes[0,0].text(0.5, 0.5, 'No recognition data', ha='center', va='center', transform=axes[0,0].transAxes)
+                axes[0,0].set_title('Recognition Results')
+            
+            # Model usage if available
+            model_usage = evaluation_summary['enhanced_model_performance']['model_usage_distribution']
+            if model_usage:
+                models = list(model_usage.keys())
+                counts = list(model_usage.values())
+                axes[0,1].bar(models, counts)
+                axes[0,1].set_title('Model Usage')
+                plt.setp(axes[0,1].get_xticklabels(), rotation=45)
+            else:
+                axes[0,1].text(0.5, 0.5, 'No model data', ha='center', va='center', transform=axes[0,1].transAxes)
+                axes[0,1].set_title('Model Usage')
+            
+            # Performance summary text
+            axes[1,0].axis('off')
+            summary = f"""Performance Summary:
+Recognition Rate: {recognition_stats['recognition_rate']:.1%}
+Mean Confidence: {evaluation_summary['confidence_analysis']['mean_confidence']:.3f}
+Enhanced Fallback: {evaluation_summary['enhanced_model_performance']['enhanced_fallback_rate']:.1%}"""
+            axes[1,0].text(0.1, 0.5, summary, transform=axes[1,0].transAxes, fontsize=10)
+            
+            # Database stats
+            db_stats = evaluation_summary['enhanced_database_statistics']
+            axes[1,1].axis('off')
+            db_summary = f"""Database Statistics:
+Total Embeddings: {db_stats['total_embeddings_in_db']}
+Sphere Augmentations: {db_stats['sphere_lighting_augmentations']}
+Brightness Augmentations: {db_stats['brightness_augmentations']}"""
+            axes[1,1].text(0.1, 0.5, db_summary, transform=axes[1,1].transAxes, fontsize=10)
+            
+            plt.tight_layout()
+            plt.suptitle('Face Recognition Analysis - Basic View', fontsize=14, y=0.98)
+            
+            basic_plot_filename = f"basic_analysis_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+            plt.savefig(basic_plot_filename, dpi=300, bbox_inches='tight')
+            plt.show()
+            
+            print(f"📊 Basic visualization saved as: {basic_plot_filename}")
+            
+        except Exception as e2:
+            print(f"❌ Error creating basic visualization: {e2}")
+        
+else:
+    print("❌ No evaluation summary available. Please run Step 6 first.")
